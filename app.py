@@ -32,9 +32,9 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 import os
 
-MYSQL_HOST = os.environ.get("MYSQL_HOST", "localhost")
+MYSQL_HOST = os.environ.get("MYSQL_HOST", "db")
 MYSQL_USER = os.environ.get("MYSQL_USER", "root")
-MYSQL_PASSWORD = os.environ.get("MYSQL_PASSWORD", "123456")
+MYSQL_PASSWORD = os.environ.get("MYSQL_PASSWORD", "BSVgs14531071")
 MYSQL_DB = os.environ.get("MYSQL_DB", "fizy")
 
 # --------------- DB & TABLE OLUŞTUR ---------------

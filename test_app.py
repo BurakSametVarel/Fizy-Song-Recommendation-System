@@ -3,9 +3,9 @@ import os
 import mysql.connector
 from app import app, create_db_and_table, create_listened_table
 
-MYSQL_HOST = os.environ.get("MYSQL_HOST", "localhost")
+MYSQL_HOST = os.environ.get("MYSQL_HOST", "db")
 MYSQL_USER = os.environ.get("MYSQL_USER", "root")
-MYSQL_PASSWORD = os.environ.get("MYSQL_PASSWORD", "123456")
+MYSQL_PASSWORD = os.environ.get("MYSQL_PASSWORD", "BSVgs14531071")
 TEST_DB_NAME = os.environ.get("MYSQL_DB", "fizy_test")
 
 @pytest.fixture(scope="session", autouse=True)
