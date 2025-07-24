@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Öneriler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #18181c;
+            color: #fafaff;
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+            margin: 0; padding: 0;
+        }
+        .container {
+            max-width: 480px;
+            margin: 60px auto 0 auto;
+            background: #23232b;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+            padding: 38px 30px 26px 30px;
+        }
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 2rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .section-title {
+            color: #76ffe0;
+            margin: 18px 0 8px 0;
+            font-size: 1.07rem;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 16px 0;
+        }
+        ul li {
+            background: #282830;
+            border-radius: 7px;
+            padding: 8px 13px;
+            margin-bottom: 7px;
+            font-size: 1.03rem;
+            letter-spacing: 0.5px;
+        }
+        a, .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #29b6f6;
+            font-weight: 600;
+            font-size: 1.09rem;
+            margin-top: 10px;
+            padding: 6px 18px;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #23232b 50%, #23232b 100%);
+            border: 1px solid #29b6f6;
+            transition: background .22s, color .22s;
+        }
+        a:hover, .back-btn:hover {
+            background: #41d1b7;
+            color: #18181c;
+            border-color: #41d1b7;
+        }
+        @media (max-width: 600px) {
+            .container { max-width: 98vw; padding: 18px 8px;}
+            h1 { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Öneriler</h1>
+        <div class="section-title">Girdiğiniz Şarkılar:</div>
+        <ul>
+        {% for line in songs %}
+            <li>{{ line }}</li>
+        {% endfor %}
+        </ul>
+        {% if recommendations %}
+            <div class="section-title">Benzer Şarkı Önerileri:</div>
+            <ul>
+            {% for rec in recommendations %}
+                <li>
+                    <b>{{ rec.name }}</b> — {{ rec.artists }} ({{ rec.genre }})
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <div>Üzgünüz, öneri bulunamadı. Lütfen şarkı ve sanatçıyı doğru giriniz.</div>
+        {% endif %}
+        <br>
+        <a href="/">Yeni Sorgu</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kullanıcı Paneli - Fizy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { background: #18181c; color: #fff; font-family: 'Segoe UI', 'Roboto', sans-serif; margin: 0; }
+        .container { max-width: 680px; margin: 40px auto; background: #23232b; border-radius: 20px; box-shadow: 0 8px 32px #0005; padding: 34px 28px; }
+        .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+        .header .logo img { height: 46px; }
+        .header .logout-btn { background: #ffe34b; color: #23232b; border: none; border-radius: 7px; padding: 9px 18px; font-weight: bold; cursor: pointer; }
+        .header .logout-btn:hover { background: #41d1b7; color: #23232b; }
+        h2 { color: #ffe34b; margin-bottom: 7px; }
+        .welcome { color: #76ffe0; font-size: 1.17rem; margin-bottom: 22px;}
+        .section-title { color:#41d1b7; font-size:1.11rem; margin-bottom:8px; margin-top:18px;}
+        .song-list, .recommend-list { list-style: none; margin:0; padding:0;}
+        .song-list li, .recommend-list li { background: #191925; border-radius: 7px; padding: 12px 15px; margin-bottom:9px; display:flex; align-items:center; }
+        .song-list li .song-artist, .recommend-list li .song-artist { color: #41d1b7; font-size: 0.96rem; margin-left:8px; }
+        .recommend-list li { background: #232350; border-left: 4px solid #ffe34b; }
+        @media (max-width: 740px) { .container { max-width:98vw; padding:12px 4vw;} }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Fizy Logo">
+            </div>
+            <form method="get" action="{{ url_for('logout') }}">
+                <button type="submit" class="logout-btn">Çıkış Yap</button>
+            </form>
+        </div>
+        <h2>Hoş geldin, {{ username }}!</h2>
+        <div class="welcome">Senin için en yeni öneriler burada 👇</div>
+        
+        <div class="section-title">🎧 Son Dinlediklerin</div>
+        <ul class="song-list">
+            {% for song in listened_songs %}
+            <li>
+                <span>{{ song.song_name }}</span>
+                <span class="song-artist">- {{ song.song_artist }}</span>
+            </li>
+            {% else %}
+            <li>Henüz hiç şarkı dinlemedin.</li>
+            {% endfor %}
+        </ul>
+        
+        <div class="section-title">⭐ Sana Özel Öneriler</div>
+        <ul class="recommend-list">
+            {% for song in recommendations %}
+            <li>
+                <span>{{ song['name'] }}</span>
+                <span class="song-artist">- {{ song['artists'] }}</span>
+            </li>
+            {% else %}
+            <li>Henüz öneri yok.</li>
+            {% endfor %}
+        </ul>
+        
+        <div style="text-align:right; margin-top:20px;">
+            <a href="/" style="color:#41d1b7; text-decoration:none; font-weight:600;">← Ana Sayfa</a>
+        </div>
+    </div>
+</body>
+</html>

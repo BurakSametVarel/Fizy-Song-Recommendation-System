@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Şarkılar ve İstatistikler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { background: #18181c; color: #fff; font-family: 'Segoe UI', 'Roboto', sans-serif; margin: 0; padding: 0;}
+        .container { max-width: 1080px; margin: 40px auto; background: #23232b; border-radius: 18px; box-shadow: 0 8px 32px #0003; padding: 34px 28px;}
+        h1 { text-align: center; color: #ffe34b; margin-bottom: 22px; }
+        .stats-bar { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-bottom: 28px;}
+        .stat-card { background: #2a2a38; border-radius: 11px; padding: 14px 22px; text-align: center; min-width: 150px; box-shadow: 0 2px 8px #ffe34b20;}
+        .stat-title { color: #76ffe0; font-size: 1rem; font-weight: 600;}
+        .stat-value { font-size: 1.35rem; font-weight: bold; color: #ffe34b;}
+        .cluster-img-wrap { text-align:center; margin-bottom:32px; margin-top:12px; }
+        .back-link { color: #41d1b7; text-decoration: none; font-weight: 600; margin-top: 22px; display: inline-block;}
+        .back-link:hover { color: #ffe34b; }
+        /* Arama kutusu stili */
+        #songSearch {width:100%;padding:8px;font-size:1rem;margin-bottom:14px;border-radius:7px;border:1px solid #ffe34b;box-shadow:0 1px 5px #ffe34b20;}
+        table { width: 100%; border-collapse: collapse; background: #23232b;}
+        th, td { padding: 8px 10px; border-bottom: 1px solid #2d2d3a; text-align: left; }
+        th { color: #41d1b7; background: #20202a;}
+        tr:nth-child(even) { background: #23232b;}
+        tr:hover { background: #191925; }
+        @media (max-width: 600px) { .container { max-width: 98vw; padding: 8px 2px;} .stats-bar { flex-direction: column; gap: 8px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Şarkılar ve İstatistikler</h1>
+        <div class="stats-bar">
+            {% for k, v in stats.items() %}
+            <div class="stat-card">
+                <div class="stat-title">{{ k }}</div>
+                <div class="stat-value">{{ v }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="margin-bottom:30px;">
+            {{ cluster_html|safe }}
+        </div>
+
+        <!-- ARAMA KUTUSU -->
+        <input type="text" id="songSearch" placeholder="Şarkı, sanatçı veya tür ara...">
+
+        <table id="songsTable">
+            <thead>
+                <tr>
+                    <th>Adı</th>
+                    <th>Sanatçılar</th>
+                    <th>Tür</th>
+                    <th>Yıl</th>
+                    <th>Popülerlik</th>
+                    <th>Enerji</th>
+                    <th>Dans</th>
+                    <th>Tempo</th>
+                    <th>Küme</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for song in songs %}
+                <tr>
+                    <td>{{ song['name'] }}</td>
+                    <td>{{ song['artists'] }}</td>
+                    <td>{{ song['genre'] }}</td>
+                    <td>{{ song['year'] }}</td>
+                    <td>{{ song['popularity'] }}</td>
+                    <td>{{ '{:.2f}'.format(song['energy']) }}</td>
+                    <td>{{ '{:.2f}'.format(song['danceability']) }}</td>
+                    <td>{{ '{:.1f}'.format(song['tempo']) }}</td>
+                    <td>{{ song['cluster_label'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="back-link">← Ana Sayfa</a>
+    </div>
+    <script>
+    // Tablo filtreleme kodu
+    document.getElementById('songSearch').addEventListener('input', function () {
+        let filter = this.value.toLowerCase();
+        let rows = document.querySelectorAll('#songsTable tbody tr');
+        rows.forEach(function(row) {
+            let text = row.innerText.toLowerCase();
+            row.style.display = text.includes(filter) ? '' : 'none';
+        });
+    });
+    </script>
+</body>
+</html>

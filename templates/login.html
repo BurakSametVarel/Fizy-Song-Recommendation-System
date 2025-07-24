@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kullanıcı Girişi</title>
+    <style>
+        body { background:#18181c; color:#fff; font-family:Segoe UI,sans-serif; }
+        .container {
+            max-width:340px; margin:70px auto; background:#23232b; padding:30px;
+            border-radius:14px; box-shadow:0 2px 10px #ffe34b25;
+        }
+        h2 { color:#ffe34b; text-align:center; }
+        .form-input {
+            width:100%; padding:9px; border-radius:6px; margin-bottom:12px; border:none;
+        }
+        .btn {
+            width:100%; padding:10px; background:#ffe34b; color:#23232b;
+            font-weight:bold; border:none; border-radius:6px; cursor:pointer;
+        }
+        .btn:hover { background:#41d1b7; color:#23232b; }
+        .error { background:#e74c3c; color:#fff; padding:8px 0; border-radius:6px; margin-bottom:12px; text-align:center; }
+        .success { background:#41d1b7; color:#18181c; padding:8px 0; border-radius:6px; margin-bottom:12px; text-align:center; }
+        .links { text-align:center; margin-top:18px; }
+        .links a { color:#41d1b7; text-decoration:none; margin:0 5px; }
+        .links a:hover { color:#ffe34b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Kullanıcı Girişi</h2>
+        <form method="post">
+            <input type="text" name="username" class="form-input" placeholder="Kullanıcı Adı" required>
+            <input type="password" name="password" class="form-input" placeholder="Şifre" required>
+            {% if error %}
+            <div class="error flash-msg">{{ error }}</div>
+            {% endif %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }} flash-msg">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <button type="submit" class="btn">Giriş Yap</button>
+        </form>
+        <div class="links">
+            <a href="{{ url_for('register') }}">Kayıt Ol</a> |
+            <a href="/">Ana Sayfa</a>
+        </div>
+    </div>
+    <script>
+    // Flash mesajlarını belirli bir süre sonra kaybolacak şekilde ayarla
+    setTimeout(function() {
+        document.querySelectorAll('.flash-msg').forEach(function(msg){
+            msg.style.transition = 'opacity 0.6s';
+            msg.style.opacity = '0';
+            setTimeout(function(){ msg.style.display='none'; }, 600);
+        });
+    }, 2500); // 2.5 saniye sonra kaybolur
+    </script>
+</body>
+</html>

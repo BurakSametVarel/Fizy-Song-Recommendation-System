@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Akıllı Şarkı Öneri Sistemi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #18181c;
+            color: #fafaff;
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 440px;
+            margin: 50px auto 0 auto;
+            background: #23232b;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+            padding: 36px 32px 24px 32px;
+        }
+        h1 {
+            margin: 0 0 28px 0;
+            font-size: 2rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        label {
+            font-size: 1rem;
+            color: #c9cadb;
+        }
+        input[type="text"], select {
+            width: 100%;
+            background: #16161b;
+            color: #fafaff;
+            border: 1px solid #383846;
+            border-radius: 9px;
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 6px;
+            margin-bottom: 14px;
+        }
+        input[type="text"]:focus {
+            border-color: #41d1b7;
+            outline: none;
+        }
+        button, input[type="submit"] {
+            background: linear-gradient(90deg, #41d1b7 60%, #29b6f6 100%);
+            color: #18181c;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(64,209,183,0.07);
+            margin: 6px 0;
+            transition: background .25s;
+        }
+        button:hover, input[type="submit"]:hover {
+            background: linear-gradient(90deg, #29b6f6 60%, #41d1b7 100%);
+            color: #23232b;
+        }
+        .section-title {
+            font-size: 1.15rem;
+            margin: 20px 0 10px 0;
+            color: #76ffe0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 10px 0;
+        }
+        ul li {
+            background: #282830;
+            border-radius: 7px;
+            padding: 7px 13px;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .remove-btn {
+            background: none;
+            color: #ea5454;
+            font-size: 1.07rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .remove-btn:hover {
+            text-decoration: underline;
+        }
+        #searchResult {
+            margin-bottom: 18px;
+        }
+        /* --- Eşleşen şarkı select ve option özel tasarım --- */
+        #searchResult select, #searchResult option {
+            background: #23232b;
+            color: #ffe34b;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1.5px solid #ffe34b;
+            border-radius: 8px;
+            padding: 10px 0;
+            min-height: 40px;
+            margin-bottom: 8px;
+            margin-top: 10px;
+            letter-spacing: 0.2px;
+        }
+        #searchResult select:focus, #searchResult select:hover {
+            border-color: #ffe34b;
+            outline: none;
+            background: #18181c;
+        }
+        #searchResult option:checked, #searchResult option:focus, #searchResult option:hover {
+            background: #ffe34b !important;
+            color: #23232b !important;
+        }
+        #searchResult select {
+            box-shadow: 0 2px 8px #ffe34b40;
+            color-scheme: dark;
+        }
+        /* Loading Spinner */
+        #loadingSpinner {
+            display: none;
+            text-align: center;
+            margin-top: 18px;
+        }
+        @media (max-width: 540px) {
+            .container { max-width: 98vw; padding: 18px 8px;}
+            h1 { font-size: 1.2rem; }
+        }
+    </style>
+    <script>
+        let songList = [];
+        let searchResults = [];
+
+        async function searchSong() {
+            const name = document.getElementById('song').value.trim();
+            const artist = document.getElementById('artist').value.trim();
+            if (!name) return;
+            document.getElementById('searchResult').innerHTML = "<div>Aranıyor...</div>";
+            const response = await fetch("/search_song", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({song: name, artist: artist})
+            });
+            const data = await response.json();
+            searchResults = data.results;
+            if (searchResults.length === 0) {
+                document.getElementById('searchResult').innerHTML = "<div>Şarkı bulunamadı.</div>";
+                return;
+            }
+            let options = "";
+            for (let i = 0; i < searchResults.length; i++) {
+                options += `<option value="${i}">${searchResults[i].full_str}</option>`;
+            }
+            document.getElementById('searchResult').innerHTML =
+                `<select id="resultSelect">${options}</select>
+                 <button type="button" onclick="addSelectedSong()">Listeye Ekle</button>`;
+        }
+
+        function addSelectedSong() {
+            const select = document.getElementById('resultSelect');
+            const idx = select.value;
+            const songStr = searchResults[idx].full_str;
+            songList.push(songStr);
+            updateSongList();
+            // Temizle
+            document.getElementById('searchResult').innerHTML = "";
+            document.getElementById('song').value = "";
+            document.getElementById('artist').value = "";
+        }
+
+        function updateSongList() {
+            let listHtml = "";
+            for (let i = 0; i < songList.length; i++) {
+                listHtml += "<li>" + songList[i] + " <button type='button' class='remove-btn' onclick='removeSong(" + i + ")'>Sil</button></li>";
+            }
+            document.getElementById('songList').innerHTML = listHtml;
+        }
+
+        function removeSong(idx) {
+            songList.splice(idx, 1);
+            updateSongList();
+        }
+
+        function submitSongs() {
+            if (songList.length === 0) {
+                alert("Lütfen en az bir şarkı ekleyin.");
+                return false;
+            }
+            document.getElementById('songsInput').value = songList.join('\n');
+            return true;
+        }
+
+        function showLoadingAndSubmit() {
+            if (!submitSongs()) return false;
+            document.getElementById('loadingSpinner').style.display = "block";
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div style="display:flex; justify-content:center;">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Fizy Logo" style="height:62px; margin-bottom:14px; filter: drop-shadow(0 0 3px #ffe34b);">
+        </div>
+        <h1>Akıllı Şarkı Öneri Sistemi</h1>
+        <form method="post" onsubmit="return showLoadingAndSubmit();">
+            <label>Şarkı Adı:</label>
+            <input type="text" id="song" placeholder="Love Story" autocomplete="off">
+            <label>Sanatçı (Opsiyonel):</label>
+            <input type="text" id="artist" placeholder="Taylor Swift" autocomplete="off">
+            <button type="button" onclick="searchSong()">Eşleşenleri Göster</button>
+            <div id="searchResult"></div>
+            <div class="section-title">Eklenen Şarkılar</div>
+            <ul id="songList"></ul>
+            <input type="hidden" name="songs" id="songsInput">
+            <input type="submit" value="Bana Öner">
+        </form>
+        <div id="loadingSpinner">
+            <svg width="48" height="48" viewBox="0 0 44 44" stroke="#41d1b7">
+              <g fill="none" fill-rule="evenodd" stroke-width="4">
+                <circle cx="22" cy="22" r="20" stroke-opacity=".2"/>
+                <path d="M42 22c0-11.046-8.954-20-20-20">
+                  <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="0.9s" repeatCount="indefinite"/>
+                </path>
+              </g>
+            </svg>
+            <div style="margin-top:8px; color:#76ffe0; font-size:1rem;">Öneriler hazırlanıyor...</div>
+        </div>
+    </div>
+</body>
+</html>
