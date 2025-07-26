@@ -87,8 +87,8 @@ For any questions, feedback, or collaboration requests, please feel free to reac
 
 Name: Burak Samet Varel
 
-Email: [buraksametvarel@gmail.com]
+Email: [varelburaksamet38@gmail.com](mailto:varelburaksamet38@gmail.com)
 
-LinkedIn: [https://www.linkedin.com/in/buraksametvarel/](https://www.linkedin.com/in/buraksametvarel/)
+LinkedIn: [https://www.linkedin.com/in/burak-samet-varel-30b989227/](https://www.linkedin.com/in/burak-samet-varel-30b989227/)
 
 GitHub: [https://github.com/BurakSametVarel](https://github.com/BurakSametVarel)
