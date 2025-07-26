@@ -1,6 +1,7 @@
 **Smart Song Recommendation System**
 
 Developed during my internship at Turkcell (Fizy Department).
+
 This project demonstrates the application of data science and software engineering practices in a real-world, corporate setting.
 
 **Overview**
@@ -21,6 +22,7 @@ The project is fully containerized with Docker and is designed for seamless depl
 **Dataset**
 
 Source: Spotify Dataset on Kaggle ([https://www.kaggle.com/datasets](https://www.kaggle.com/datasets))
+
 Description: Contains thousands of songs with features such as valence, energy, danceability, release date, and more.
 
 **Deployment (Ubuntu Server)**
