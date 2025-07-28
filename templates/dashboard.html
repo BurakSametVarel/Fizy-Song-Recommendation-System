@@ -7,8 +7,7 @@
     <style>
         body { background: #18181c; color: #fff; font-family: 'Segoe UI', 'Roboto', sans-serif; margin: 0; }
         .container { max-width: 680px; margin: 40px auto; background: #23232b; border-radius: 20px; box-shadow: 0 8px 32px #0005; padding: 34px 28px; }
-        .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-        .header .logo img { height: 46px; }
+        .header { display: flex; align-items: center; justify-content: flex-end; margin-bottom: 18px; }
         .header .logout-btn { background: #ffe34b; color: #23232b; border: none; border-radius: 7px; padding: 9px 18px; font-weight: bold; cursor: pointer; }
         .header .logout-btn:hover { background: #41d1b7; color: #23232b; }
         h2 { color: #ffe34b; margin-bottom: 7px; }
@@ -24,9 +23,6 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">
-                <img src="{{ url_for('static', filename='logo.png') }}" alt="Fizy Logo">
-            </div>
             <form method="get" action="{{ url_for('logout') }}">
                 <button type="submit" class="logout-btn">Çıkış Yap</button>
             </form>
