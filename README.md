@@ -1,6 +1,10 @@
-\=======================================================
-FIZY SONG RECOMMENDATION SYSTEM
-===============================
+```
+=======================================================
+               FIZY SONG RECOMMENDATION SYSTEM
+=======================================================
+```
+
+
 
 Developed during my internship at Turkcell (Fizy Department).
 This project demonstrates how advanced data science and software engineering practices can be implemented in a real-world, corporate setting with a focus on modern recommendation algorithms and robust backend architecture.
