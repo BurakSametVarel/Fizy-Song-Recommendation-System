@@ -3,6 +3,7 @@ FIZY SONG RECOMMENDATION SYSTEM
 ===============================
 
 Developed during my internship at Turkcell (Fizy Department).
+
 This project demonstrates how advanced data science and software engineering practices can be implemented in a real-world, corporate setting with a focus on modern recommendation algorithms and robust backend architecture.
 
 **Project Overview**
@@ -29,6 +30,7 @@ Fizy Song Recommendation System is a comprehensive, scalable music recommendatio
 **Dataset**
 
 Source: Spotify Dataset on Kaggle
+
 Description: Contains thousands of songs with features including artist, genre, valence, energy, danceability, popularity, release date, and more.
 
 **System Architecture**
@@ -48,6 +50,7 @@ Description: Contains thousands of songs with features including artist, genre, 
 
 **Step 1 - Clone the Repository**
 git clone [https://github.com/YourUsername/Fizy-Song-Recommendation-System.git](https://github.com/YourUsername/Fizy-Song-Recommendation-System.git)
+
 cd Fizy-Song-Recommendation-System
 
 **Step 2 - Configure Environment**
@@ -60,6 +63,7 @@ Download the Spotify Dataset from Kaggle and place the CSV files into the data/ 
 docker-compose up --build -d
 
 Flask API: [http://your-server-ip:5000](http://your-server-ip:5000)
+
 MySQL: db:3306 (accessible from within Docker network)
 
 **Step 5 - Logs & Troubleshooting**
@@ -100,11 +104,8 @@ The system is designed for extensibility: new algorithms, more features, and thi
 **Acknowledgements**
 
 This project was developed as part of my internship at Turkcell, in the Fizy Department.
+
 Special thanks to my mentors and the Fizy team for their continuous guidance and technical support.
-
-**License**
-
-Licensed under the MIT License.
 
 **Contact**
 
@@ -114,6 +115,3 @@ Email: [varelburaksamet38@gmail.com](mailto:varelburaksamet38@gmail.com)
 LinkedIn: [https://www.linkedin.com/in/burak-samet-varel-30b989227/](https://www.linkedin.com/in/burak-samet-varel-30b989227/)
 GitHub: [https://github.com/BurakSametVarel](https://github.com/BurakSametVarel)
 
----
-
-İstersen başlığı sadece büyük harflerle de bırakabilirim veya daha sade bir çizgiyle ayırabilirim. Hangisini tercih edersin?
