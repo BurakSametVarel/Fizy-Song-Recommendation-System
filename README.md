@@ -1,96 +1,119 @@
-**Smart Song Recommendation System**
+\=======================================================
+FIZY SONG RECOMMENDATION SYSTEM
+===============================
 
 Developed during my internship at Turkcell (Fizy Department).
+This project demonstrates how advanced data science and software engineering practices can be implemented in a real-world, corporate setting with a focus on modern recommendation algorithms and robust backend architecture.
 
-This project demonstrates the application of data science and software engineering practices in a real-world, corporate setting.
+**Project Overview**
 
-**Overview**
+Fizy Song Recommendation System is a comprehensive, scalable music recommendation engine built with Python (Flask), MySQL, and Docker. The system utilizes both **content-based filtering** and **collaborative filtering** approaches to deliver accurate and relevant song suggestions to users, leveraging a real-world dataset from Spotify (Kaggle).
 
-Fizy Song Recommendation System is a scalable and hybrid music recommendation engine that combines content-based and collaborative filtering methods. The system uses real-world music data from the Spotify Dataset available on Kaggle.
+**Key Algorithms & Techniques**
 
-The project is fully containerized with Docker and is designed for seamless deployment on Ubuntu Server environments.
+* **Content-Based Filtering:**
+  Each song is represented by a rich set of features (acousticness, energy, danceability, valence, tempo, etc.). Songs are recommended by calculating cosine similarity between feature vectors of songs the user likes and all other songs in the dataset, excluding previously listened ones and songs by the same artist for diversity.
 
-**Features**
+* **Collaborative Filtering:**
+  The system records users’ listening histories in MySQL and uses these to model implicit preferences. By aggregating the preferences of users with similar tastes, the system can suggest tracks that align with collective patterns, not just individual feature similarity.
 
-* Content-Based Filtering (using song features and metadata)
-* Collaborative Filtering (user preferences and listening history)
-* RESTful API for recommendations
-* MySQL database integration
-* Dockerized for production and development
-* Easily extensible and configurable
+* **Clustering & Visualization:**
+  K-Means clustering and PCA (Principal Component Analysis) are used for exploratory analysis and to visualize the song universe, helping to identify natural groupings and feature distributions among songs.
+
+* **Audio Feature Extraction:**
+  The application includes a module for extracting advanced features from uploaded MP3 or WAV files using Librosa, allowing integration of custom user audio data into the recommendation pipeline.
+
+* **User Authentication & Profiles:**
+  Secure user authentication (hashed passwords), listening history tracking, and profile-based personalized recommendations are all supported. Each user receives recommendations based on their recent listening activity.
 
 **Dataset**
 
-Source: Spotify Dataset on Kaggle ([https://www.kaggle.com/datasets](https://www.kaggle.com/datasets))
+Source: Spotify Dataset on Kaggle
+Description: Contains thousands of songs with features including artist, genre, valence, energy, danceability, popularity, release date, and more.
 
-Description: Contains thousands of songs with features such as valence, energy, danceability, release date, and more.
+**System Architecture**
+
+* **Backend:** Python (Flask)
+* **Database:** MySQL (with Docker volume persistence)
+* **Frontend:** HTML templates rendered by Flask (supports RESTful interaction)
+* **Containerization:** Docker and Docker Compose for reproducible local/server deployment
 
 **Deployment (Ubuntu Server)**
 
 **Prerequisites:**
 
 * Ubuntu 20.04/22.04 server
-* Docker ([https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/))
-* Docker Compose ([https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/))
+* Docker
+* Docker Compose
 
 **Step 1 - Clone the Repository**
-
 git clone [https://github.com/YourUsername/Fizy-Song-Recommendation-System.git](https://github.com/YourUsername/Fizy-Song-Recommendation-System.git)
 cd Fizy-Song-Recommendation-System
 
-**Step 2 - Configure Environment Variables**
-
-Edit the docker-compose.yml file if you need to set custom MySQL passwords or change ports.
+**Step 2 - Configure Environment**
+Adjust any necessary environment variables (MySQL root password, DB name, etc.) in docker-compose.yml as needed.
 
 **Step 3 - Place Dataset**
+Download the Spotify Dataset from Kaggle and place the CSV files into the data/ directory.
 
-Download the Spotify Dataset from Kaggle and place the CSV file(s) into the data directory of the project.
-
-**Step 4 - Build and Run with Docker Compose**
-
+**Step 4 - Build and Start**
 docker-compose up --build -d
 
-The Flask API will be available at [http://your-server-ip:5000](http://your-server-ip:5000)
-MySQL will run inside a container and is accessible as db:3306 from other containers.
+Flask API: [http://your-server-ip:5000](http://your-server-ip:5000)
+MySQL: db:3306 (accessible from within Docker network)
 
-**Step 5 - Check Logs**
-
-To view logs for troubleshooting, use:
+**Step 5 - Logs & Troubleshooting**
 docker-compose logs -f
 
-**Step 6 - Stopping the Application**
-
+**Step 6 - Stop the System**
 docker-compose down
 
-**Project Structure**
+**Project Directory Structure**
 
-Fizy-Song-Recommendation-System directory includes:
-app.py
-requirements.txt
-Dockerfile
-docker-compose.yml
-data directory with spotify\_dataset.csv
-and other related files
+Fizy-Song-Recommendation-System/
+
+* app.py
+* requirements.txt
+* Dockerfile
+* docker-compose.yml
+* data/ (with spotify\_dataset.csv)
+* templates/ (HTML UI)
+* uploads/ (for user audio analysis)
+
+**Usage & API**
+
+* **User Registration/Login:**
+  Users create an account, log in, and their listening history is securely tracked.
+* **Song Recommendation:**
+  Users can enter favorite songs or upload audio, and receive tailored recommendations combining both content and collaborative methods.
+* **Audio Feature Extraction:**
+  Upload your own song and get its extracted features for custom recommendation.
+* **Visualization:**
+  Explore the musical landscape with K-Means clusters and PCA projection.
+* **REST API:**
+  The backend is structured to allow easy integration with frontend apps or external services.
+
+**Extensibility**
+
+The system is designed for extensibility: new algorithms, more features, and third-party integrations (Spotify API, user rating, etc.) can easily be added.
 
 **Acknowledgements**
 
 This project was developed as part of my internship at Turkcell, in the Fizy Department.
-Special thanks to my mentors and the Fizy team for their valuable support and guidance.
+Special thanks to my mentors and the Fizy team for their continuous guidance and technical support.
 
 **License**
 
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Feel free to open issues or contribute!
+Licensed under the MIT License.
 
 **Contact**
 
-For any questions, feedback, or collaboration requests, please feel free to reach out.
-
+For technical questions, suggestions, or collaboration:
 Name: Burak Samet Varel
-
 Email: [varelburaksamet38@gmail.com](mailto:varelburaksamet38@gmail.com)
-
 LinkedIn: [https://www.linkedin.com/in/burak-samet-varel-30b989227/](https://www.linkedin.com/in/burak-samet-varel-30b989227/)
-
 GitHub: [https://github.com/BurakSametVarel](https://github.com/BurakSametVarel)
+
+---
+
+İstersen başlığı sadece büyük harflerle de bırakabilirim veya daha sade bir çizgiyle ayırabilirim. Hangisini tercih edersin?
