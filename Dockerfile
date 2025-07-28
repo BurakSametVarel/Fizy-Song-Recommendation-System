@@ -23,3 +23,4 @@ EXPOSE 5000
 
 # Uygulamayı başlat
 CMD ["python", "app.py"]
+
