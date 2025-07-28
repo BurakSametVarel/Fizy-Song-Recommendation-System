@@ -1,21 +1,3 @@
-Tabii! Markdown olmadan, başlığı terminalde veya düz metin ortamında büyütmek için **tamamını büyük harfle** ve görsel olarak ayırıcılarla yazabilirsin:
-
-```
-=======================================================
-               FIZY SONG RECOMMENDATION SYSTEM
-=======================================================
-```
-
-veya
-
-```
-FIZY SONG RECOMMENDATION SYSTEM
-```
-
-Aşağıda başlığı büyük ve ayırt edici şekilde, tüm metinle birlikte veriyorum:
-
----
-
 \
 FIZY SONG RECOMMENDATION SYSTEM
 ===============================
