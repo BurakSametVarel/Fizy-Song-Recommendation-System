@@ -3,7 +3,7 @@ services:
     image: mysql:8.0
     container_name: fizy-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: BSVgs14531071.  # Sadece bunu kullan!
+      MYSQL_ROOT_PASSWORD: XYZgs14531071.  # Sadece bunu kullan!
       MYSQL_DATABASE: fizy
     ports:
       - "3306:3306"
@@ -16,7 +16,7 @@ services:
     environment:
       MYSQL_HOST: db
       MYSQL_USER: root
-      MYSQL_PASSWORD: BSVgs14531071.
+      MYSQL_PASSWORD: XYZgs14531071.
       MYSQL_DB: fizy
     ports:
       - "5000:5000"
