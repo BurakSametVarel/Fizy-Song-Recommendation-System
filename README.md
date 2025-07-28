@@ -1,5 +1,5 @@
 \
-FIZY SONG RECOMMENDATION SYSTEM
+Smart SONG RECOMMENDATION SYSTEM
 ===============================
 
 Developed during my internship at Turkcell (Fizy Department).
@@ -8,7 +8,7 @@ This project demonstrates how advanced data science and software engineering pra
 
 **Project Overview**
 
-Fizy Song Recommendation System is a comprehensive, scalable music recommendation engine built with Python (Flask), MySQL, and Docker. The system utilizes both **content-based filtering** and **collaborative filtering** approaches to deliver accurate and relevant song suggestions to users, leveraging a real-world dataset from Spotify (Kaggle).
+Smart Song Recommendation System is a comprehensive, scalable music recommendation engine built with Python (Flask), MySQL, and Docker. The system utilizes both **content-based filtering** and **collaborative filtering** approaches to deliver accurate and relevant song suggestions to users, leveraging a real-world dataset from Spotify (Kaggle).
 
 **Key Algorithms & Techniques**
 
@@ -49,9 +49,9 @@ Description: Contains thousands of songs with features including artist, genre, 
 * Docker Compose
 
 **Step 1 - Clone the Repository**
-git clone [https://github.com/YourUsername/Fizy-Song-Recommendation-System.git](https://github.com/YourUsername/Fizy-Song-Recommendation-System.git)
+git clone [https://github.com/YourUsername/Samrt-Song-Recommendation-System.git](https://github.com/YourUsername/Smart-Song-Recommendation-System.git)
 
-cd Fizy-Song-Recommendation-System
+cd Smart-Song-Recommendation-System
 
 **Step 2 - Configure Environment**
 Adjust any necessary environment variables (MySQL root password, DB name, etc.) in docker-compose.yml as needed.
@@ -74,7 +74,7 @@ docker-compose down
 
 **Project Directory Structure**
 
-Fizy-Song-Recommendation-System/
+Smart-Song-Recommendation-System/
 
 * app.py
 * requirements.txt
@@ -110,8 +110,12 @@ Special thanks to my mentors and the Fizy team for their continuous guidance and
 **Contact**
 
 For technical questions, suggestions, or collaboration:
+
 Name: Burak Samet Varel
+
 Email: [varelburaksamet38@gmail.com](mailto:varelburaksamet38@gmail.com)
+
 LinkedIn: [https://www.linkedin.com/in/burak-samet-varel-30b989227/](https://www.linkedin.com/in/burak-samet-varel-30b989227/)
+
 GitHub: [https://github.com/BurakSametVarel](https://github.com/BurakSametVarel)
 
