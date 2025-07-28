@@ -1,5 +1,5 @@
 \
-Smart SONG RECOMMENDATION SYSTEM
+SMART SONG RECOMMENDATION SYSTEM
 ===============================
 
 Developed during my internship at Turkcell (Fizy Department).
