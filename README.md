@@ -16,7 +16,7 @@ Aşağıda başlığı büyük ve ayırt edici şekilde, tüm metinle birlikte v
 
 ---
 
-\=======================================================
+\
 FIZY SONG RECOMMENDATION SYSTEM
 ===============================
 
